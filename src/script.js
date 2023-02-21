@@ -112,9 +112,9 @@ function createAirplaneMesh() {
 	propeller.castShadow = true
 	propeller.receiveShadow = true
 
-	var geomBlade = new THREE.BoxGeometry(1, 80, 10, 1, 1, 1)
+	var geomBlade = new THREE.BoxGeometry(2, 80, 10, 1, 1, 1)
 	var matBlade = new THREE.MeshPhongMaterial({
-		color: Colors.brownDark,
+		color: Colors.white,
 		flatShading: true,
 	})
 	var blade1 = new THREE.Mesh(geomBlade, matBlade)
@@ -408,10 +408,11 @@ var Colors = {
 	pink: 0xf5986e,
 	yellow: 0xf4ce93,
 	blue: 0x68c3c0,
+	black: 0x000000,
 }
 
 const COLOR_COINS = 0xffd700 // 0x009999
-const COLOR_COLLECTIBLE_BUBBLE = COLOR_COINS
+const COLOR_COLLECTIBLE_BUBBLE = Colors.white
 
 ///////////////
 // GAME VARIABLES
@@ -642,14 +643,14 @@ class SimpleGun {
 		const position = new THREE.Vector3()
 		this.mesh.getWorldPosition(position)
 		position.add(new THREE.Vector3(5, 0, 0))
-		spawnProjectile(this.damage(), position, direction, BULLET_SPEED, 0.3, 3)
+		spawnProjectile(this.damage(), position, direction, BULLET_SPEED, 1, 3)
 
 		// Little explosion at exhaust
 		spawnParticles(
 			position.clone().add(new THREE.Vector3(2, 0, 0)),
 			1,
-			Colors.orange,
-			0.3
+			Colors.white,
+			0.5
 		)
 
 		// audio
@@ -759,13 +760,13 @@ class BetterGun {
 		const position = new THREE.Vector3()
 		this.mesh.getWorldPosition(position)
 		position.add(new THREE.Vector3(12, 0, 0))
-		spawnProjectile(this.damage(), position, direction, BULLET_SPEED, 0.8, 6)
+		spawnProjectile(this.damage(), position, direction, BULLET_SPEED, 1.2, 6)
 
 		// Little explosion at exhaust
 		spawnParticles(
 			position.clone().add(new THREE.Vector3(2, 0, 0)),
 			3,
-			Colors.orange,
+			Colors.white,
 			0.5
 		)
 
@@ -834,7 +835,7 @@ class Airplane {
 	}
 
 	tick(deltaTime) {
-		this.propeller.rotation.x += 0.2 + game.planeSpeed * deltaTime * 0.005
+		this.propeller.rotation.x += 0.01 + game.planeSpeed * deltaTime * 0.005
 
 		if (game.status === 'playing') {
 			game.planeSpeed = utils.normalize(
@@ -930,11 +931,9 @@ class Collectible {
 		this.mesh = new THREE.Object3D()
 		const bubble = new THREE.Mesh(
 			new THREE.SphereGeometry(10, 100, 100),
-			new THREE.MeshPhongMaterial({
-				color: COLOR_COLLECTIBLE_BUBBLE,
+			new THREE.MeshNormalMaterial({
 				transparent: true,
-				opacity: 0.4,
-				flatShading: true,
+				opacity: 0.7,
 			})
 		)
 		this.mesh.add(bubble)
@@ -1072,7 +1071,7 @@ function spawnLifeCollectible() {
 		}
 	})
 	heart.position.set(0, -1, -3)
-	heart.scale.set(5, 5, 5)
+	heart.scale.set(10, 10, 10)
 
 	new Collectible(heart, () => {
 		addLife()
@@ -1085,6 +1084,8 @@ class Cloud {
 		const geom = new THREE.BoxGeometry(20, 20, 20)
 		const mat = new THREE.MeshPhongMaterial({
 			color: Colors.white,
+			transparent: true,
+			opacity: Math.random() * 0.3 + 0.1,
 		})
 		const nBlocs = 3 + Math.floor(Math.random() * 3)
 		for (let i = 0; i < nBlocs; i++) {
@@ -1252,7 +1253,8 @@ function spawnParticles(pos, count, color, scale) {
 // ENEMIES
 class Enemy {
 	constructor() {
-		var geom = new THREE.TetrahedronGeometry(8, 2)
+		const enemySize = Math.random() * 8 + 8
+		var geom = new THREE.TetrahedronGeometry(enemySize, 2)
 		var mat = new THREE.MeshPhongMaterial({
 			color: Colors.red,
 			shininess: 0,
@@ -1384,7 +1386,7 @@ let allProjectiles = []
 
 class Projectile {
 	constructor(damage, initialPosition, direction, speed, radius, length) {
-		const PROJECTILE_COLOR = Colors.brownDark // 0x333333
+		const PROJECTILE_COLOR = Colors.white // 0x333333
 
 		this.damage = damage
 		this.mesh = new THREE.Mesh(
@@ -1773,7 +1775,7 @@ class UI {
 	}
 
 	updateDistanceDisplay() {
-		this._elemDistanceCounter.innerText = Math.floor(game.distance)
+		this._elemDistanceCounter.innerText = `${Math.floor(game.distance)}`
 		const d =
 			502 *
 			(1 -

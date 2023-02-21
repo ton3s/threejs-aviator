@@ -1833,6 +1833,10 @@ class UI {
 			game.statistics.shotsFired
 		document.getElementById('score-lifes-lost').innerText =
 			game.statistics.lifesLost
+		document.getElementById('score-total').innerText =
+			parseInt(game.statistics.coinsCollected) +
+			parseInt(game.statistics.enemiesKilled) * 2 -
+			parseInt(game.statistics.lifesLost) * 5
 
 		// Allow replay
 		game.status = 'waitingReplay'

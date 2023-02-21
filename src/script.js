@@ -1980,7 +1980,7 @@ function startMap() {
 
 function onWebsiteLoaded(event) {
 	// load audio
-	audioManager.load('ocean', null, '/audio/ocean.mp3')
+	audioManager.load('ocean', null, '/audio/ocean-with-animals.mp3')
 	audioManager.load('propeller', null, '/audio/propeller.mp3')
 
 	audioManager.load('coin-1', 'coin', '/audio/coin-1.mp3')

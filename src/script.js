@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import * as dat from 'lil-gui'
 
 // Debug
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 function createAirplaneMesh() {
 	const mesh = new THREE.Object3D()

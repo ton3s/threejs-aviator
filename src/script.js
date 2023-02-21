@@ -1744,6 +1744,7 @@ class UI {
 			ui.updateCoinsCount()
 
 			ui.hideReplay()
+			ui.hideScoreScreen()
 		}
 	}
 
@@ -1751,12 +1752,13 @@ class UI {
 		this.mouseButtons = [false, false, false]
 	}
 
-	// function handleTouchEnd(event) {
-	// 	if (game.status == "waitingReplay"){
-	// 		resetGame()
-	// 		ui.hideReplay()
-	// 	}
-	// }
+	handleTouchEnd(event) {
+		if (game.status == 'waitingReplay') {
+			resetGame()
+			ui.hideReplay()
+			ui.hideScoreScreen()
+		}
+	}
 
 	showReplay() {
 		this._elemReplayMessage.style.display = 'block'
@@ -1831,6 +1833,16 @@ class UI {
 			game.statistics.shotsFired
 		document.getElementById('score-lifes-lost').innerText =
 			game.statistics.lifesLost
+
+		// Allow replay
+		game.status = 'waitingReplay'
+	}
+
+	hideScoreScreen() {
+		const elemScreen = document.getElementById('score-screen')
+
+		// make visible
+		elemScreen.classList.remove('visible')
 	}
 
 	showError(message) {

@@ -1071,7 +1071,7 @@ function spawnLifeCollectible() {
 		}
 	})
 	heart.position.set(0, -1, -3)
-	heart.scale.set(10, 10, 10)
+	heart.scale.set(6, 6, 6)
 
 	new Collectible(heart, () => {
 		addLife()
@@ -1966,7 +1966,7 @@ let soundPlaying = false
 
 function startMap() {
 	if (!soundPlaying) {
-		audioManager.play('propeller', { loop: true, volume: 0.1 })
+		audioManager.play('propeller', { loop: true, volume: 0.4 })
 		audioManager.play('ocean', { loop: true, volume: 0.2 })
 		soundPlaying = true
 	}

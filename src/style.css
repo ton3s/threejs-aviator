@@ -105,7 +105,7 @@ a:focus-visible {
 
 .header {
 	position: absolute;
-	top: 0;
+	top: 1vh;
 	left: 0;
 	width: 100%;
 	text-align: center;
@@ -121,7 +121,7 @@ a:focus-visible {
 .header__title {
 	line-height: 0.8;
 	margin: 0;
-	font-weight: 400;
+	font-weight: 100;
 	font-family: 'Dela Gothic One', sans-serif;
 	color: var(--color-text-title);
 }
@@ -159,15 +159,19 @@ a:focus-visible {
 	margin: 0 0.75rem;
 }
 
-.score {
+.score__parent {
 	display: flex;
 	justify-content: center;
+}
+
+.score {
+	display: flex;
 	background: var(--color-bg-score);
-	margin: 0 0 0 auto;
 	text-align: center;
 	white-space: nowrap;
 	border-radius: 1rem;
 	padding: 1rem;
+	margin-top: 1.5rem;
 }
 
 .score__content {
@@ -202,6 +206,7 @@ a:focus-visible {
 	font-size: 0.65rem;
 	letter-spacing: 0.15rem;
 	font-weight: bold;
+	margin-bottom: 7px;
 }
 
 .score__value {
@@ -217,6 +222,7 @@ a:focus-visible {
 .score__value--dist {
 	font-size: 1.85rem;
 	line-height: 1;
+	margin-top: -20px;
 }
 
 .level-circle {
@@ -236,9 +242,9 @@ a:focus-visible {
 
 #lifes .heart {
 	display: inline-block;
-	width: 20px;
-	height: 20px;
-	margin-top: 10px;
+	width: 25px;
+	height: 25px;
+	margin-top: -25px;
 	opacity: 0.7;
 }
 
@@ -525,7 +531,6 @@ a:focus-visible {
 		font-size: 16px;
 	}
 	.header {
-		display: flex;
 		align-content: space-between;
 	}
 }

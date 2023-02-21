@@ -29,26 +29,11 @@ function createAirplaneMesh() {
 	const vertices = new Float32Array(
 		utils
 			.makeTetrahedron(frontUL, frontUR, frontLL, frontLR)
-			.concat(
-				// front
-				utils.makeTetrahedron(backUL, backUR, backLL, backLR)
-			)
-			.concat(
-				// back
-				utils.makeTetrahedron(backUR, backLR, frontUR, frontLR)
-			)
-			.concat(
-				// side
-				utils.makeTetrahedron(backUL, backLL, frontUL, frontLL)
-			)
-			.concat(
-				// side
-				utils.makeTetrahedron(frontUL, backUL, frontUR, backUR)
-			)
-			.concat(
-				// top
-				utils.makeTetrahedron(frontLL, backLL, frontLR, backLR)
-			) // bottom
+			.concat(utils.makeTetrahedron(backUL, backUR, backLL, backLR))
+			.concat(utils.makeTetrahedron(backUR, backLR, frontUR, frontLR))
+			.concat(utils.makeTetrahedron(backUL, backLL, frontUL, frontLL))
+			.concat(utils.makeTetrahedron(frontUL, backUL, frontUR, backUR))
+			.concat(utils.makeTetrahedron(frontLL, backLL, frontLR, backLR))
 	)
 	const geomCabin = new THREE.BufferGeometry()
 	geomCabin.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
@@ -173,7 +158,6 @@ function createAirplaneMesh() {
 	})
 	var wheelAxis = new THREE.Mesh(wheelAxisGeom, wheelAxisMat)
 	wheelTireR.add(wheelAxis)
-
 	mesh.add(wheelTireR)
 
 	var wheelProtecL = wheelProtecR.clone()

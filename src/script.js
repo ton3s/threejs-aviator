@@ -1955,9 +1955,7 @@ function resetMap() {
 
 	setSideView()
 
-	airplane.equipWeapon(null)
-
-	// airplane.equipWeapon(new SimpleGun())
+	airplane.equipWeapon(new SimpleGun())
 	// airplane.equipWeapon(new DoubleGun())
 	// airplane.equipWeapon(new BetterGun())
 }

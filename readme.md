@@ -24,6 +24,8 @@ npm run build
 - [ ] VR functionality
 - [ ] Mobile support
 - [ ] Setup high score table
+- [ ] Add additional game modes (Endless / Levels)
+- [ ] Add additional enemies / bosses
 - [ ] Integration with blockchain to provide tokens on level completion
 - [ ] Achievement badges minted as NFTs
 - [ ] Setup in-game store where additional guns/ships minted as NFTs can be purchased with tokens

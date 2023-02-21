@@ -649,11 +649,11 @@ class SimpleGun {
 			position.clone().add(new THREE.Vector3(2, 0, 0)),
 			1,
 			Colors.orange,
-			0.2
+			0.3
 		)
 
 		// audio
-		audioManager.play('shot-soft')
+		audioManager.play('shot-soft', { volume: 0.1 })
 
 		// Recoil of gun
 		const initialX = this.mesh.position.x
@@ -770,7 +770,7 @@ class BetterGun {
 		)
 
 		// audio
-		audioManager.play('shot-hard')
+		audioManager.play('shot-hard', { volume: 0.1 })
 
 		// Recoil of gun
 		const initialX = this.mesh.position.x
